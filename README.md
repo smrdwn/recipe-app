@@ -131,6 +131,23 @@ To change caching behavior, edit `client/src/sw.js`.
 - Server: Render or Railway
 - Client: Netlify or Vercel
 
+### Netlify (Client + Functions)
+
+This repo includes Netlify Functions to replace the Express proxy.
+
+1. Create a new Netlify site from the repo.
+2. Build settings:
+
+- Build command: `npm --prefix client run build`
+- Publish directory: `client/dist`
+
+3. Netlify environment variables:
+
+- `MEALDB_API_BASE=https://www.themealdb.com/api/json/v1`
+- `MEALDB_API_KEY=1`
+
+The client keeps using `/api/*`, which is redirected to `/.netlify/functions/mealdb`.
+
 ## Post-generation Checklist
 
 - Replace placeholder SVG icons in `client/public/icons` with real PNGs.
